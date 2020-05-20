@@ -1,0 +1,36 @@
+import React from 'react'
+import { Route } from "react-router-dom";
+import Register from './auth/Register'
+
+
+const ApplicationViews = props => {
+    return (
+        <>
+            <Route
+                exact path="/" render={props => {
+                    return <h2>Placeholder</h2>
+                }}
+            />
+
+            <Route
+                path="/register" render={props => {
+                    return <Register {...props} />
+                }}
+            />
+
+            <Route
+                path="/login" render={props => {
+                    // return <Login {...props} />
+                }}
+            />
+
+            <Route
+                path="/myitinerary" render={props => {
+                    // return <MyItinerary />
+                }}
+            />
+        </>
+    )
+}
+
+export default ApplicationViews
