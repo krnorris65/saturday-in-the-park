@@ -22,7 +22,7 @@ const Register = props => {
         }
         console.log(newCustomer)
 
-        fetch("http://localhost:8000/register/", {
+        fetch("http://localhost:8000/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -34,7 +34,7 @@ const Register = props => {
         .then(res => {
             if ("token" in res) {
                 localStorage.setItem( "kennywood_token", res.token )
-                setIsLoggedIn(true)
+                // setIsLoggedIn(true)
             }
         })
     }
