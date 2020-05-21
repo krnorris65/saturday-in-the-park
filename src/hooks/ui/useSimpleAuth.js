@@ -26,7 +26,7 @@ const useSimpleAuth = () => {
             .then(res => {
                 if ("token" in res) {
                     localStorage.setItem( "kennywood_token", res.token )
-                    setIsLoggedIn(true)
+                    setLoggedIn(true)
                 }
             })
     }
@@ -45,7 +45,7 @@ const useSimpleAuth = () => {
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem( "kennywood_token", res.token )
-                    setIsLoggedIn(true)
+                    setLoggedIn(true)
                 }
             })
     }

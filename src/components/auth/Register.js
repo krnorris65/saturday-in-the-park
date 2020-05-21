@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import useSimpleAuth from '../../hooks/ui/useSimpleAuth'
 
 const Register = props => {
     const [credentials, setCredentials] = useState({ firstName: "", lastName: "", email: "", userName:"",  password: "", familyMembers: 0 });
+    const { register } = useSimpleAuth()
 
     const handleFieldChange = (evt) => {
         const stateToChange = { ...credentials };
@@ -22,20 +24,11 @@ const Register = props => {
         }
         console.log(newCustomer)
 
-        fetch("http://localhost:8000/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify(newCustomer)
-        })
-        .then(resp => resp.json())
-        .then(res => {
-            if ("token" in res) {
-                localStorage.setItem( "kennywood_token", res.token )
-                // setIsLoggedIn(true)
-            }
+        register(newCustomer)
+        .then(() => {
+            props.history.push({
+                pathname: "/"
+            })
         })
     }
 

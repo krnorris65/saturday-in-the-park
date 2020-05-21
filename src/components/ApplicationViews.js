@@ -1,6 +1,7 @@
 import React from 'react'
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import Register from './auth/Register'
+import Login from './auth/Login'
 
 
 const ApplicationViews = props => {
@@ -20,7 +21,7 @@ const ApplicationViews = props => {
 
             <Route
                 path="/login" render={props => {
-                    // return <Login {...props} />
+                    return <Login {...props} />
                 }}
             />
 
@@ -33,4 +34,4 @@ const ApplicationViews = props => {
     )
 }
 
-export default ApplicationViews
+export default withRouter(ApplicationViews)
