@@ -6,7 +6,7 @@ const Home = props => {
 
     return (
         <>
-        <h2>Home Page</h2>
+        <h1>Welcome to Kennywood!</h1>
            <AreaList {...props}/>
         </>
     )

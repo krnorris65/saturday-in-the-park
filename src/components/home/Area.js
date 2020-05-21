@@ -8,7 +8,7 @@ const Area = props => {
         <section className="parkArea">
             <h3>{props.park.name}</h3>
             <p>{props.park.theme}</p>
-            <AttractionList attractions={props.park.attractions} {...props}/>
+            <AttractionList key={`ridelist-${props.park.id}`} areaId={props.park.id} {...props}/>
         </section>
     )
 }

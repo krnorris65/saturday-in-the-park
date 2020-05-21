@@ -7,16 +7,13 @@ const AreaList = props => {
 
     const getAreas = () => {
         ParkManager.getParkAreas()
-        .then(parks => {
-            console.log(parks)
-            setParkareas(parks)
-        })
+        .then(setParkareas)
     }
 
     useEffect(getAreas, [])
     return (
         <>
-        {parkareas.map(park => <Area key={park.id} park={park} {...props}/>)}
+        {parkareas.map(park => <Area key={`park-${park.id}`} park={park} {...props}/>)}
         </>
     )
 }
