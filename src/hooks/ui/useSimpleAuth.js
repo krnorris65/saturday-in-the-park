@@ -5,9 +5,9 @@ const remoteURL = "http://localhost:8000"
 const useSimpleAuth = () => {
     const [loggedIn, setLoggedIn] = useState(false)
 
-    //verifies whether a user is logged into the app by checking if the state of loggedIn is true or kennywood_token in localStorage is not null
+    //verifies whether a user is logged into the app by checking if the state of loggedIn is true or kennywood-token in sessionStorage is not null
     const isAuthenticated = () => {
-        return loggedIn || localStorage.getItem("kennywood_token") !== null
+        return loggedIn || sessionStorage.getItem("kennywood-token") !== null
 
     }
 
@@ -25,7 +25,7 @@ const useSimpleAuth = () => {
             .then(res => res.json())
             .then(res => {
                 if ("token" in res) {
-                    localStorage.setItem( "kennywood_token", res.token )
+                    sessionStorage.setItem( "kennywood-token", res.token )
                     setLoggedIn(true)
                 }
             })
@@ -44,16 +44,16 @@ const useSimpleAuth = () => {
             .then(res => res.json())
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
-                    localStorage.setItem( "kennywood_token", res.token )
+                    sessionStorage.setItem( "kennywood-token", res.token )
                     setLoggedIn(true)
                 }
             })
     }
 
     const logout = () => {
-        //when the user logs out, state of loggedIn is set to false and their token is removed from localStorage
+        //when the user logs out, state of loggedIn is set to false and their token is removed from sessionStorage
         setLoggedIn(false)
-        localStorage.removeItem("kennywood_token")
+        sessionStorage.removeItem("kennywood-token")
     }
 
     return { isAuthenticated, logout, login, register }
