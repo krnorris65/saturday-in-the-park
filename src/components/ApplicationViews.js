@@ -3,6 +3,7 @@ import { Route, withRouter } from "react-router-dom";
 import Register from './auth/Register'
 import Login from './auth/Login'
 import Home from './home/Home'
+import MyItinerary from './itinerary/MyItinerary'
 
 
 const ApplicationViews = props => {
@@ -24,8 +25,7 @@ const ApplicationViews = props => {
             />
 
             <Route path="/myitinerary" render={props => {
-                    // When the user navigates to /myitinerary, they should see a list of itinerary items specific to that user.
-                    // return <MyItinerary />
+                    return <MyItinerary {...props}/>
                 }}
             />
             <Route path="/myitinerary/new" render={props => {
