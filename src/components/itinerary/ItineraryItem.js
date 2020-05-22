@@ -5,8 +5,7 @@ const ItineraryItem = props => {
 
     return (
         <section className="itineraryItem">
-            <p>{props.itineraryItem.attraction.name}{props.itineraryItem.attraction.area.name})</p>
-            <p>{props.itineraryItem.starttime}</p>
+            <p>{props.itineraryItem.attraction.name} ({props.itineraryItem.attraction.area.name}) at {props.itineraryItem.starttime}</p>
         </section>
     )
 }

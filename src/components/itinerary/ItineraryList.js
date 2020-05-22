@@ -3,19 +3,19 @@ import ItineraryManager from '../../modules/ItineraryManager'
 import ItineraryItem from './ItineraryItem'
 
 const ItineraryList = props => {
-    const [attractions, setAttractions] = useState([])
+    const [itineraryItems, setItineraryItems] = useState([])
 
-    const getAreaAttractions = () => {
-        ParkManager.getAttractionsByArea(props.areaId)
-        .then(setAttractions)
+    const getItineraryItems = () => {
+        ItineraryManager.getItinerary()
+        .then(setItineraryItems)
     }
 
-    useEffect(getAreaAttractions, [])
+    useEffect(getItineraryItems, [])
 
     return (
         <>
         <ul>
-        {attractions.map(attraction => <li key={`ride-${attraction.id}`}><Attraction  attraction={attraction}/></li>)}
+        {itineraryItems.map(item => <li key={`item-${item.id}`}><ItineraryItem  itineraryItem={item}/></li>)}
         </ul>
         </>
     )
