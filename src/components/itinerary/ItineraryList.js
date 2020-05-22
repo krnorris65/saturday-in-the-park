@@ -10,12 +10,17 @@ const ItineraryList = props => {
         .then(setItineraryItems)
     }
 
+    const deleteItem = (id) => {
+        ItineraryManager.deleteItineraryItem(id)
+        .then(getItineraryItems)
+    }
+
     useEffect(getItineraryItems, [])
 
     return (
         <>
         <ul>
-        {itineraryItems.map(item => <li key={`item-${item.id}`}><ItineraryItem  itineraryItem={item}/></li>)}
+        {itineraryItems.map(item => <li key={`item-${item.id}`}><ItineraryItem  itineraryItem={item} {...props} deleteItem={deleteItem}/></li>)}
         </ul>
         </>
     )

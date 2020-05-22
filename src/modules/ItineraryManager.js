@@ -12,7 +12,17 @@ const ItineraryManager = {
         })
             .then(response => response.json())
     },
-    createItinerary(item) {
+    getItineraryItem(itemId) {
+        return fetch(`${baseUrl}/itineraries/${itemId}`, {
+            "method": "GET",
+            "headers": {
+                "Accept": "application/json",
+                "Authorization": `${token}`
+            }
+        })
+            .then(response => response.json())
+    },
+    createItineraryItem(item) {
         return fetch(`${baseUrl}/itineraries`, {
             "method": "POST",
             "headers": {
@@ -24,7 +34,7 @@ const ItineraryManager = {
         })
             .then(response => response.json())
     },
-    editItinerary(item) {
+    editItineraryItem(item) {
         return fetch(`${baseUrl}/itineraries/${item.id}`, {
             "method": "PUT",
             "headers": {
@@ -34,7 +44,14 @@ const ItineraryManager = {
             },
             body: JSON.stringify(item)
         })
-            .then(response => response.json())
+    },
+    deleteItineraryItem(itemId) {
+        return fetch(`${baseUrl}/itineraries/${itemId}`, {
+            "method": "DELETE",
+            "headers": {
+                "Authorization": `${token}`
+            }
+        })
     },
 }
 
