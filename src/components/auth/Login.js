@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import useSimpleAuth from '../../hooks/ui/useSimpleAuth'
 
 const Login = props => {
-    const [credentials, setCredentials] = useState({userName:"",  password: ""});
-    const { isAuthenticated, login } = useSimpleAuth()
+    const [credentials, setCredentials] = useState({ userName: "", password: "" });
+    const { login } = useSimpleAuth()
 
     const handleFieldChange = (evt) => {
         const stateToChange = { ...credentials };
         stateToChange[evt.target.id] = evt.target.value;
         setCredentials(stateToChange);
-      };
+    };
 
     const handleLogin = (evt) => {
         evt.preventDefault()
@@ -20,16 +20,11 @@ const Login = props => {
         }
 
         login(customerInfo)
-        .then(() => {
-            if (isAuthenticated()) {
+            .then(() => {
                 props.history.push({
                     pathname: "/"
                 })
-            }
-            else {
-                
-            }
-        })
+            })
     }
 
     return (
