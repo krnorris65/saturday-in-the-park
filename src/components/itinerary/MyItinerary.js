@@ -6,7 +6,9 @@ const MyItinerary = props => {
     return (
         <>
             <h2>My Itinerary</h2>
-            <ItineraryList {...props}/>
+            <button onClick={() => props.history.push("/myitinerary/new")}>
+                    New Item</button>
+            <ItineraryList {...props} />
         </>
     )
 }
