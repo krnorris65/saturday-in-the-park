@@ -1,0 +1,5 @@
+ItineraryManager = {
+
+}
+
+export default ItineraryManager
