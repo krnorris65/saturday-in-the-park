@@ -5,12 +5,18 @@ import ParkManager from '../../modules/ParkManager'
 const ItineraryForm = props => {
     const [itineraryItem, setItineraryItem] = useState({ startTime: 1, attractionId: 1 });
     const [attractions, setAttractions] = useState([])
+    const [file, setFile] = useState("")
 
     const handleFieldChange = (evt) => {
         const stateToChange = { ...itineraryItem };
         stateToChange[evt.target.id] = evt.target.value;
         setItineraryItem(stateToChange);
     };
+
+    const handleImage = (evt) => {
+        console.log(evt.target.files[0])
+        setFile(evt.target.files[0])
+    }
     const handleSubmit = e => {
         e.preventDefault();
 
@@ -25,7 +31,12 @@ const ItineraryForm = props => {
                 .then(() => props.history.push("/myitinerary"))
         }
         else {
-            ItineraryManager.createItineraryItem(itineraryItemObj)
+            const formData = new FormData()
+            formData.append("image_path", file, file.name)
+            formData.append('starttime', itineraryItem.startTime)
+            formData.append('attraction_id', itineraryItem.attractionId)
+
+            ItineraryManager.createItineraryItem(formData)
                 .then(() => props.history.push("/myitinerary"))
         }
 
@@ -71,6 +82,12 @@ const ItineraryForm = props => {
                 <input onChange={handleFieldChange} type="number"
                     id="startTime"
                     required="" autoFocus="" value={itineraryItem.startTime} />
+            </fieldset>
+            <fieldset>
+                <label htmlFor="startTime"> Start Time </label>
+                <input onChange={handleImage} type="file"
+                    id="image_path"
+                    value={itineraryItem.image_path} />
             </fieldset>
             <fieldset>
                 <button type="submit">Submit</button>

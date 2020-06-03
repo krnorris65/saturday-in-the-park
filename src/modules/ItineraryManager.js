@@ -1,5 +1,4 @@
 const baseUrl = "http://localhost:8000"
-const token = `Token ${sessionStorage.getItem("kennywood-token")}`
 
 const ItineraryManager = {
     getItinerary() {
@@ -7,7 +6,7 @@ const ItineraryManager = {
             "method": "GET",
             "headers": {
                 "Accept": "application/json",
-                "Authorization": `${token}`
+                "Authorization": `Token ${sessionStorage.getItem("kennywood-token")}`
             }
         })
             .then(response => response.json())
@@ -17,7 +16,7 @@ const ItineraryManager = {
             "method": "GET",
             "headers": {
                 "Accept": "application/json",
-                "Authorization": `${token}`
+                "Authorization": `Token ${sessionStorage.getItem("kennywood-token")}`
             }
         })
             .then(response => response.json())
@@ -26,11 +25,10 @@ const ItineraryManager = {
         return fetch(`${baseUrl}/itineraries`, {
             "method": "POST",
             "headers": {
-                "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": `${token}`
+                "Authorization": `Token ${sessionStorage.getItem("kennywood-token")}`
             },
-            body: JSON.stringify(item)
+            body: item
         })
             .then(response => response.json())
     },
@@ -40,7 +38,7 @@ const ItineraryManager = {
             "headers": {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": `${token}`
+                "Authorization": `Token ${sessionStorage.getItem("kennywood-token")}`
             },
             body: JSON.stringify(item)
         })
@@ -49,7 +47,7 @@ const ItineraryManager = {
         return fetch(`${baseUrl}/itineraries/${itemId}`, {
             "method": "DELETE",
             "headers": {
-                "Authorization": `${token}`
+                "Authorization": `Token ${sessionStorage.getItem("kennywood-token")}`
             }
         })
     },
